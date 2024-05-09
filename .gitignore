@@ -1,0 +1,12 @@
+# IDE stuf
+.vscode
+.idea
+
+# Python stuf
+.venv/
+__pycache__/
+.pylint
+
+# Django stuf
+db.sqlite
+media/

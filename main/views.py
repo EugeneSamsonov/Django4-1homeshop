@@ -1,10 +1,25 @@
-from django.http import HttpResponse
 from django.shortcuts import render
 
 # Create your views here.
 
 
 def index(request):
+    context = {
+        "title": "Главная",
+        "content": "Магазин мебели HOME"
+    }
+    return render(request, "main/index.html", context)
+
+
+def about(request):
+    context = {
+        "title": "О нас",
+        "content": "Текст о том какой классный этот интернет магазин."
+    }
+    return render(request, "main/about.html", context)
+
+
+def posts(request):
     context = {
         "posts": [
             "Officia anim exercitation in sit voluptate culpa qui aliqua eiusmod eu deserunt" 
@@ -13,14 +28,7 @@ def index(request):
             "Eiusmod velit sint consequat eiusmod.",
         ],
         "is_need_to_view": True,
-        "title": "Main",
+        "title": "Посты",
+        "content": "Посты",
     }
-
-    return render(request, "main/index.html", context)
-
-
-def about(request):
-    return HttpResponse("This is a page about me!<br><br> I love bananas")
-
-def aboutus(request):
-    return HttpResponse("This is a page about me!<br><br> I love bananas")
+    return render(request, 'main/posts.html', context)

@@ -1,22 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    {% if title %}
-        <title>{{ title }}</title>
-    {% else %}
-        <title> Page </title>
-    {% endif %}    
-</head>
-<body>
-    {% if is_need_to_view %}
-        {% for post in posts %}
-            <p>{{ post }}</p>
-        {% endfor %}
-    {% endif %}
+{% extends "main/base.html" %}
 
 
-    {% block content %}{% endblock content %}
-</body>
-</html>
+{% load static %}
+
+
+{% block css %}
+    <!-- Стиль footer-a для главной страницы -->
+    <link rel="stylesheet" href="{% static "deps/css/my_footer_css.css" %}">
+{% endblock  %}
+
+
+{% block content %}
+        <h1 class="mt-5 pt-5"><strong>{{ content }}</strong></h1>
+{% endblock  %}
+
+
+{% block footer %}
+<footer class="py-4 bg-dark">
+    <div class="container">
+        <p class="m-0 text-center text-white">Copyright &copy; Home Python Hub Studio 2023</p>
+    </div>
+</footer>
+{% endblock  %}

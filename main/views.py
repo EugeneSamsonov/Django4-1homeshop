@@ -1,12 +1,16 @@
 from django.shortcuts import render
 
+from goods.models import Categories
+
 # Create your views here.
 
 
 def index(request):
+    categories = Categories.objects.all()
     context = {
         "title": "Главная",
-        "content": "Магазин мебели Eugene"
+        "content": "Магазин мебели Eugene",
+        "categories": categories
     }
     return render(request, "main/index.html", context)
 
@@ -14,7 +18,7 @@ def index(request):
 def about(request):
     context = {
         "title": "О нас",
-        "content": "Текст о том какой классный этот интернет магазин."
+        "content": "Текст о том какой классный этот интернет магазин.",
     }
     return render(request, "main/about.html", context)
 

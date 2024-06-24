@@ -1,5 +1,9 @@
 [MESSAGES CONTROL]
 disable = import-outside-toplevel,
         missing-function-docstring,
-        missing-module-docstring
+        missing-module-docstring,
+        line-too-long,
+        trailing-whitespace,
+        missing-class-docstring,
+
         

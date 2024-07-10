@@ -1,14 +1,20 @@
+from django.http import HttpResponse
 from django.shortcuts import render
-import goods_list
+
+from goods.models import Products
+# import goods_list
 # Create your views here.
 
-def catalog(request):
+def catalog(request) -> HttpResponse:
+
+    goods = Products.objects.all()
+
     context = {
         'title': 'Catalog',
-        'goods': goods_list.goods,
+        'goods': goods,
     }
     return render(request, 'goods/catalog.html', context)
 
 
-def product(request):
+def product(request) -> HttpResponse:
     return render(request, 'goods/product.html')

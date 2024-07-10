@@ -19,18 +19,3 @@ def about(request):
         "content": "Текст о том какой классный этот интернет магазин.",
     }
     return render(request, "main/about.html", context)
-
-
-def posts(request):
-    context = {
-        "posts": [
-            "Officia anim exercitation in sit voluptate culpa qui aliqua eiusmod eu deserunt" 
-            "pariatur.",
-            "Velit ea voluptate do ut anim nostrud commodo ut duis cupidatat sunt anim officia.",
-            "Eiusmod velit sint consequat eiusmod.",
-        ],
-        "is_need_to_view": True,
-        "title": "Посты",
-        "content": "Посты",
-    }
-    return render(request, 'main/posts.html', context)

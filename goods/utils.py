@@ -8,6 +8,9 @@ from django.contrib.postgres.search import SearchVector, SearchQuery, SearchRank
 
 def q_search(query):
 
+    if query == '':
+        return Products.objects.all()
+    
     if query.isdigit() and len(query) <= 5:
         return Products.objects.filter(id=query)
     

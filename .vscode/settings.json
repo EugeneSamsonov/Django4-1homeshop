@@ -32,7 +32,7 @@
         "**/*.html": "html",
         "**/templates/*/*.html": "django-html",
         "**/templates/*/*/*.html": "django-html",
-        "**/templates/*": "django-txt",
+        "**/templates/*": "django-html",
         "**/requirements{/**,*}.{txt,in}": "pip-requirements"
     },
     "django.snippets.exclude": [

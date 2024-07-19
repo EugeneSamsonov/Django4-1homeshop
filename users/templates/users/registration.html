@@ -12,8 +12,8 @@
                     {% csrf_token %}
                     <div class="row">
                         <div class="col-md-6 mb-3">
-                            <label for="id_firstName" class="form-label">Имя*</label>
-                            <input type="text" class="form-control" id="id_firstName"
+                            <label for="Id_first_name" class="form-label">Имя*</label>
+                            <input type="text" class="form-control" id="Id_first_name"
                                 name="first_name"
                                 value="{% if form.first_name.value %} {{ form.first_name.value }}{% endif %}"
                                 placeholder="Введите ваше имя" required>
@@ -22,8 +22,8 @@
                                 {% endif %}
                         </div>
                         <div class="col-md-6 mb-3">
-                            <label for="id_lastName" class="form-label">Фамилия*</label>
-                            <input type="text" class="form-control" id="id_lastName"
+                            <label for="Id_last_name" class="form-label">Фамилия*</label>
+                            <input type="text" class="form-control" id="Id_last_name"
                                 name="last_name"
                                 value="{% if form.last_name.value %} {{ form.last_name.value }}{% endif %}"
                                 placeholder="Введите вашу фамилию" required>

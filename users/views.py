@@ -20,6 +20,10 @@ def login(request):
             if user:
                 auth.login(request, user)
                 messages.success(request, f"{user.username}, вы успешно вошли в аккаунт")
+                
+                if request.POST.get('next'):
+                    return HttpResponseRedirect(request.POST.get('next'))
+                
                 return HttpResponseRedirect(reverse("main:index"))
     else:
         form = UserLoginForm()
@@ -58,6 +62,7 @@ def profile(request):
         form = ProfileForm(data=request.POST, instance=request.user, files=request.FILES)
         if form.is_valid():
             form.save()
+
             return HttpResponseRedirect(reverse("user:profile"))
     else:
         form = ProfileForm(instance=request.user)

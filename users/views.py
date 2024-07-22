@@ -21,7 +21,8 @@ def login(request):
                 auth.login(request, user)
                 messages.success(request, f"{user.username}, вы успешно вошли в аккаунт")
                 
-                if request.POST.get('next'):
+                redirect_page = request.POST.get('next', None)
+                if redirect_page and redirect_page != reverse('user:logout'):
                     return HttpResponseRedirect(request.POST.get('next'))
                 
                 return HttpResponseRedirect(reverse("main:index"))
@@ -80,3 +81,11 @@ def logout(request):
     auth.logout(request)
     messages.success(request, "Вы вышли из аккаунта")
     return redirect(reverse("main:index"))
+
+
+def user_cart(request):
+    context = {
+        'title': 'Корзина'
+    }
+
+    return render(request, "users/user_cart.html", context)

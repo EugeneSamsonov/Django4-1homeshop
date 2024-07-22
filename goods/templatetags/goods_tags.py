@@ -1,4 +1,3 @@
-from difflib import context_diff
 from urllib.parse import urlencode
 from django import template
 

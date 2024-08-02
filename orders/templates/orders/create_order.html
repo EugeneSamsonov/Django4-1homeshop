@@ -4,13 +4,13 @@
 
 
 {% block content %}
-{% user_carts request as carts %}
 <!-- Контент на странице -->
 <div class=" bg-white p-4 mb-4 mx-2 rounded custom-shadow">
     <div class="container">
         <h3 class="text-center mb-4">Выбранные товары</h3>
         <div class="container" id="cart-items-container">
             <!-- Разметка корзины -->
+            {% user_carts request as carts %}
             {% include "carts/includes/included_cart.html" %}
             <!-- Закончилась разметка корзины -->
         </div>
@@ -95,8 +95,14 @@
                                     id="id_payment_on_get" value="1">
                                 <label class="form-check-label" for="id_payment_on_get">Наличными/картой
                                     при плучении</label> 
-                            </div>
 
+                                {% if form.id_payment_on_get.errors %}
+                                    <div class="alert alert-danger alert-dismissible fade show">{{ form.id_payment_on_get.errors }}</div>
+                                {% endif %} 
+                            </div>
+                        {% if form.errors %}
+                            <div class="alert alert-danger alert-dismissible fade show">{{ form.errors }}</div>
+                        {% endif %}
                         </div>
                     </div>
                     <button type="submit" class="btn btn-dark">Оформить заказ</button>

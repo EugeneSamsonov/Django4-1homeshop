@@ -46,7 +46,7 @@
                         <div class="col-md-6 mb-3">
                             <label for="id_phone_number" class="form-label">Номер телефона*:</label>
                             <input type="text" class="form-control" id="id_phone_number" name="phone_number"
-                                placeholder="В формате: XXX-XXX-XX-XX"
+                                placeholder="В формате: X (XXX)-XXX-XX-XX"
                                 value="{% if form.phone_number.value %}{{ form.phone_number.value }}{% endif %}"
                                 required>
                             {% if form.phone_number.errors %}
@@ -100,9 +100,9 @@
                                     <div class="alert alert-danger alert-dismissible fade show">{{ form.id_payment_on_get.errors }}</div>
                                 {% endif %} 
                             </div>
-                        {% if form.errors %}
+                        {% comment %} {% if form.errors %}
                             <div class="alert alert-danger alert-dismissible fade show">{{ form.errors }}</div>
-                        {% endif %}
+                        {% endif %} {% endcomment %}
                         </div>
                     </div>
                     <button type="submit" class="btn btn-dark">Оформить заказ</button>

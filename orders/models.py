@@ -31,6 +31,7 @@ class Order(models.Model):
         db_table = 'order'
         verbose_name = "заказ"
         verbose_name_plural = "Заказы"
+        ordering = ("id", )
 
 
     def __str__(self) -> str:
@@ -47,9 +48,10 @@ class OrderItem(models.Model):
 
 
     class Meta:
-            db_table = 'order_item'
-            verbose_name = "проданный товар"
-            verbose_name_plural = "Проданные товары"
+        db_table = 'order_item'
+        verbose_name = "проданный товар"
+        verbose_name_plural = "Проданные товары"
+        ordering = ("id", )
             
     objects = OrderQueryset().as_manager()
 

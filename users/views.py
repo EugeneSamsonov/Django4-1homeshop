@@ -28,7 +28,13 @@ def login(request):
                 messages.success(request, f"{user.username}, вы успешно вошли в аккаунт")
                 
                 if session_key:
-                    Cart.objects.filter(session_key=session_key).update(user=user)
+                    # delete old authorized user carts
+                    forgot_carts = Cart.objects.filter(user=user)
+                    if forgot_carts.exists():
+                        forgot_carts.delete()
+                    # add new authorized user carts from anonimous session
+
+                Cart.objects.filter(session_key=session_key).update(user=user)
 
                 redirect_page = request.POST.get('next', None)
                 if redirect_page and redirect_page != reverse('user:logout'):

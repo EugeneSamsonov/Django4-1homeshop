@@ -1,5 +1,6 @@
 from django.http import JsonResponse
 from django.template.loader import render_to_string
+from django.urls import reverse
 
 from carts.models import Cart
 from carts.utils import get_user_carts
@@ -54,12 +55,19 @@ def cart_remove(request):
     
 
     user_cart = get_user_carts(request)
+
+    context = {"carts": user_cart}
+
+    # if referer page is create_order add key orders: True to context
+    referer = request.META.get('HTTP_REFERER')
+    if reverse('orders:create_order') in referer:
+        context["orders"] = True
+
     cart_items_html = render_to_string(
-        "carts/includes/included_cart.html", {"carts": user_cart}, request=request
-    )
+        "carts/includes/included_cart.html", context, request=request)
 
     response_data = {
-        "message": "Товар удалён из корзины",
+        "message": "Товар удален",
         "cart_items_html": cart_items_html,
         "quantity_deleted": quantity,
     }
@@ -75,16 +83,24 @@ def cart_change(request):
     cart = Cart.objects.get(id=cart_id)
     cart.quantity = quantity
     cart.save()
+    updated_quantity = cart.quantity
 
     user_cart = get_user_carts(request)
+
+    context = {"carts": user_cart}
+
+    # if referer page is create_order add key orders: True to context
+    referer = request.META.get('HTTP_REFERER')
+    if reverse('orders:create_order') in referer:
+        context["orders"] = True
+
     cart_items_html = render_to_string(
-        "carts/includes/included_cart.html", {"carts": user_cart}, request=request
-    )
+        "carts/includes/included_cart.html", context, request=request)
 
     response_data = {
-        "message": "Колличество изменено",
+        "message": "Количество изменено",
         "cart_items_html": cart_items_html,
-        "quantity": quantity,
+        "quantity": updated_quantity,
     }
 
     return JsonResponse(response_data)

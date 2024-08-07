@@ -11,3 +11,4 @@ __pycache__/
 # Django stuf
 db.sqlite
 media/
+cache/

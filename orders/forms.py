@@ -1,23 +1,9 @@
 import re
 from django import forms
 
-from orders.models import Order
 
-
-class CreateOrderForm(forms.ModelForm):
-
-
-    class Meta:
-        model = Order
-        fields = (
-            "first_name",
-            "last_name",
-            "phone_number",
-            "requires_delivery",
-            "delivery_address",
-            "payment_on_get",
-        )
-
+class CreateOrderForm(forms.Form):
+    
     first_name = forms.CharField()
     last_name = forms.CharField()
     phone_number = forms.CharField()
@@ -42,7 +28,7 @@ class CreateOrderForm(forms.ModelForm):
         if not data.isdigit():
             raise forms.ValidationError("Номер телефона должен содержать только цифры")
 
-        pattern = re.compile(r'^\d{11}$')
+        pattern = re.compile(r'^\d{10}$')
         if not pattern.match(data):
             raise forms.ValidationError("Неверный формат номера")
 

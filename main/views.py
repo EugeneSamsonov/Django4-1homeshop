@@ -1,21 +1,22 @@
-from django.shortcuts import render
-
-from goods.models import Categories
+from django.views.generic import TemplateView
 
 # Create your views here.
+class IndexView(TemplateView):
+    template_name = "main/index.html"
 
 
-def index(request):
-    context = {
-        "title": "Главная",
-        "content": "Магазин мебели Eugene",
-    }
-    return render(request, "main/index.html", context)
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["title"] = "Главная"
+        context["content"] = "Магазин мебели Eugene"
+        return context
 
+class AboutView(TemplateView):
+    template_name = "main/about.html"
 
-def about(request):
-    context = {
-        "title": "О нас",
-        "content": "Текст о том какой классный этот интернет магазин.",
-    }
-    return render(request, "main/about.html", context)
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["title"] = "О нас"
+        context["content"] = "Текст о том какой классный этот интернет магазин."
+        return context
